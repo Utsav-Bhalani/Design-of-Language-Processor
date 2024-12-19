@@ -4,7 +4,7 @@
 
 int isValid(char str[]) {
     int i = 0;
-    int size;
+    int size; 
     size = strlen(str);
     
     if(size==2){
