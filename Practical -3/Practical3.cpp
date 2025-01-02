@@ -13,28 +13,35 @@ void addToken(vector<pair<string, string>> &tokens, const string &word)
 {
     if (isKeyword(word))
     {
-        tokens.push_back({"keyword", word}); // Assign as keyword
+        tokens.push_back({"keyword", word});
     }
-    else
+    else if (isdigit(word[0]))
     {
-        if (isdigit(word[0]))
+        // Check if the word is a valid number
+        bool isNumber = all_of(word.begin(), word.end(), ::isdigit);
+        if (isNumber)
         {
-            cerr << "Error: Identifier '" << word << "' cannot start with a digit." << endl;
+            tokens.push_back({"number", word});
         }
         else
         {
-            tokens.push_back({"identifier", word});
+            cerr << "Error: Invalid token '" << word << "' starting with a digit." << endl;
         }
+    }
+    else
+    {
+        tokens.push_back({"identifier", word});
     }
 }
 
+
 int main()
 {
-    ifstream f("Practical3inputfile.c");
+    ifstream f("C:\\Users\\utsav\\OneDrive\\Desktop\\B. Tech\\6th semester\\DLP\\Practical -3\\Testcases\\testcase1.c");
 
     if (!f.is_open())
     {
-        cerr << "Error opening the file!";
+        cerr << "error opening file";
         return 1;
     }
 
@@ -105,7 +112,7 @@ int main()
                     else
                     {
                         word += c;
-                        tokens.push_back({"string", word}); // Assuming string for character literals
+                        tokens.push_back({"string", word});
                         word = "";
                     }
                     inStringS = !inStringS;
@@ -117,7 +124,7 @@ int main()
                     else
                     {
                         word += c;
-                        tokens.push_back({"string", word}); // Assuming string for string literals
+                        tokens.push_back({"string", word});
                         word = "";
                     }
                     inStringD = !inStringD;
