@@ -8,10 +8,6 @@ int charL_count = 0;
 int charU_count = 0;
 int specialChar_count = 0;
 int num_count = 0;
-
-
-
-
 %}
 
 %%

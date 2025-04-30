@@ -1,7 +1,6 @@
 /*Code for checking string of REGEX: a*bb */
 #include <stdio.h>
 #include <string.h>
-
 int isValid(char str[]) {
     int i = 0;
     int size; 
